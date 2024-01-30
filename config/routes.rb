@@ -10,5 +10,12 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root to: "tools#index"
-  
+
+  get "/tools", to: "tools#search"
+  get "/tools/:id", to: "tools#show"
+  get "/tools/:id/bookings/new", to: "bookings#new"
+  post "/bookings/:id", to: "bookings#create"
+  delete "/bookings/:id", to: "bookings#destroy"
+  get "/bookings", to: "bookings#index"
+
 end
