@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :tools, through: :bookings, dependent: :destroy
 
-  validates :first_name, :last_name, :email, presence: true
+  validates :email, presence: true
 end
