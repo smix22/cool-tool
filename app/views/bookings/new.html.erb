@@ -1,0 +1,12 @@
+<h1>Add a tool to your <%= @tool.name %> list</h1>
+
+
+  <%= simple_form_for [@tool, @booking] do |f| %>
+    <%= f.label "Choose a tool" %>
+    <%= f.association :tool %>
+
+
+    <%= f.label "Add a comment" %>
+    <%= f.input :request %>
+    <%= f.submit class:'btn btn-primary'%>
+  <% end %>
