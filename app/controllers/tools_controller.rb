@@ -1,11 +1,13 @@
 class ToolsController < ApplicationController
 
   def index
-    @tools = Tool.all
-  end
-
-  def search
-    @search = Tool.find_by(name: params[:search])
+    @search = Tool.where("lower(name) like ?", "%#{params[:search].downcase}%")
+              .or(Tool.where("lower(category) like ?", "%#{params[:search].downcase}%"))
+    if @search.blank?
+      @tools = Tool.all
+    else
+      @tools = @search
+    end
   end
 
   def show
