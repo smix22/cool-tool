@@ -1,27 +1,31 @@
-<div class="bg-primary my-0">
-  <%= link_to "My Toolbox", bookings_path, class: "btn btn-primary" %>
-</div>
+<nav class="px-3 py-2 bg-light border-bottom fixed-top">
+  <div class="container-fluid">
+    <%= link_to tools_path do %>
+      <%= image_tag "cool_tool_logo.png", style: "height: 48px;" %>
+    <% end %>
+  </div>
+</nav>
 
-<div class="container m-3 p-3">
-
-  <form>
-    <div class="input-group">
-      <input type="text" class="form-control" id="search" placeholder="Enter a tool">
-      <div class="input-group-append">
-        <button type="submit" class="btn btn-primary">Find my Tool</button>
+<div class="container-fluid">
+  <div class="mx-auto my-3 w-75">
+    <form action="/tools">
+      <div class="input-group input-group-lg">
+        <input type="text" name="search" class="form-control" placeholder="Search for a tool or a category ...">
+        <input type="submit" value="FIND MY TOOL" class="btn btn-primary text-white">
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 
-  <div class="d-flex">
+  <div class="d-flex justify-between">
   <% @tools.each do |tool| %>
-    <div style="width: 18rem;">
-      <div class="card p-3 my-3">
-        <h3 class="text-primary"><%= tool.name %></h3>
-        <div><%= link_to "See Details", tool_path(tool), class: "btn btn-primary" %></div>
+    <div class="card m-3">
+      <h5 class="card-header text-gray bg-light" style="font-variant:small-caps;"><%= tool.category %></h5>
+      <%= image_tag "cool_tool_thumb.png", style: "height: 240px; width: 240px;", class: "card-img-top" %>
+      <div class="card-body border-top bg-light">
+        <h4 class="card-title text-primary"><%= tool.name %></h4>
+        <%= link_to "SEE DETAILS", tool_path(tool), class: "btn btn-primary text-white" %>
       </div>
     </div>
-    <div class="m-2"></div>
   <% end %>
   </div>
 
