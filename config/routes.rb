@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   root to: "tools#index"
 
+  get "/tools", to: "tools#index"
   get "/tools", to: "tools#search"
   get "/tools/:id", to: "tools#show"
   get "/tools/:id/bookings/new", to: "bookings#new"
