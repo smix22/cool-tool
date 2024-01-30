@@ -13,5 +13,5 @@ User.create(email: "owner@owner.com", first_name: "Arbi", last_name: "Milan", id
 
 Tool.create(name: "Hammer", category: "handheld tool", details: "2020 Devault Hammer, with wood handle", location: "Santiago, Chile", user_id: 1)
 Tool.create(name: "Drill", category: "house tool", details: "Red Hilti 2019 power drill", location: "Liverpool, UK", user_id: 1)
-Tool.create(name: "Lawnmower", category: "garden tool", details: "100cc power Lawnmower, 2017, gasoline", location: "Hannover, Germany", user_id: 2)
+Tool.create(name: "Lawnmower", category: "garden tool", details: "100cc power Lawnmower, 2017, gasoline", location: "Hannover, Germany", user_id: 2, id: 1)
 Tool.create(name: "Jigsaw", category: "woodwork", details: "1 meter long jigsaw for trees", location: "Berlin, Germany", user_id: 2)

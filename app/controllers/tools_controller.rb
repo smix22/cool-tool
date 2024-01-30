@@ -6,4 +6,8 @@ class ToolsController < ApplicationController
   def search
     @search = Tool.find_by(name: params[:search])
   end
+  
+  def show
+    @tool = Tool.find(params[:id])
+  end
 end
