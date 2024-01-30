@@ -1,0 +1,28 @@
+<div class="bg-primary my-0">
+  <%= link_to "My Toolbox", bookings_path, class: "btn btn-primary" %>
+</div>
+
+<div class="container m-3 p-3">
+
+  <form>
+    <div class="input-group">
+      <input type="text" class="form-control" id="search" placeholder="Enter a tool">
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-primary">Find my Tool</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="d-flex">
+  <% @tools.each do |tool| %>
+    <div style="width: 18rem;">
+      <div class="card p-3 my-3">
+        <h3 class="text-primary"><%= tool.name %></h3>
+        <div><%= link_to "See Details", tools_path(tool), class: "btn btn-primary" %></div>
+      </div>
+    </div>
+    <div class="m-2"></div>
+  <% end %>
+  </div>
+
+</div>
