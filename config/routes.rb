@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "posts#index"
+
+
 
   # root to: "tools#index"
 
@@ -18,5 +19,6 @@ Rails.application.routes.draw do
   # post "/bookings/:id", to: "bookings#create"
   # delete "/bookings/:id", to: "bookings#destroy"
   # get "/bookings", to: "bookings#index"
+
 
 end
