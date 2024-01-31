@@ -2,11 +2,13 @@ class ToolsController < ApplicationController
 
   def index
     if params[:search]
-      @search = params[:search].strip
-      @search = Tool.where("lower(name) like ?", "%#{@search.downcase}%")
-                .or(Tool.where("lower(category) like ?", "%#{@search.downcase}%"))
+      @keyword = params[:search].strip
+      @search = Tool.where("lower(name) like ?", "%#{@keyword.downcase}%")
+                .or(Tool.where("lower(category) like ?", "%#{@keyword.downcase}%"))
       if @search.blank?
-        @message = "No results for \"#{params[:search]}\". Please run a new search."
+        @message = "No results for \"#{@keyword}\". Please run a new search."
+      elsif @keyword == ""
+        @message = ""
       else
         @tools = @search
       end
