@@ -1,0 +1,20 @@
+.cards {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 300px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding-top: 20px;
+}
+
+.cards-category {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+  margin-top: 15px;
+  margin-left: 16px;
+  margin-right: 16px;
+
+}
