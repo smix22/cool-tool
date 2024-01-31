@@ -8,10 +8,12 @@ class ToolsController < ApplicationController
       if @search.blank?
         @message = "No results for \"#{@keyword}\". Please run a new search."
       elsif @keyword == ""
-        @message = ""
+        @message = "You did not enter anything. Please run a new search."
       else
         @tools = @search
       end
+    else
+      @tools = Tool.all
     end
   end
 
