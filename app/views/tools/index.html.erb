@@ -16,7 +16,7 @@
     <% @tools.each do |tool| %>
       <div class="card m-3">
         <p class="card-header text-gray bg-light"><%= tool.category.upcase %></p>
-        <%= image_tag "cool_tool_thumb.png", style: "height: 240px; width: 240px;", class: "card-img-top" %>
+        <%= image_tag(tool.image_url, style: "height: 240px; width: 240px;", class: "card-img-top") %>
         <div class="card-body border-top bg-light">
           <h4 class="card-title text-primary"><%= tool.name %></h4>
           <p><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= tool.location %></p>
