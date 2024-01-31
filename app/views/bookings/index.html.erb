@@ -9,7 +9,9 @@
       <%= booking.start_date %><br>
       <%= "End date" %>
       <%= booking.end_date %><br>
+
       <%= link_to "🗑", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%><br>
+
        <%=  %><br>
     </div>
   <% end %>
