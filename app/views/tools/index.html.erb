@@ -7,6 +7,8 @@
 </nav>
 
 <div class="container-fluid">
+
+  <div style="height: 24px;"></div>
   <div class="mx-auto my-3 w-75">
     <form action="/tools">
       <div class="input-group input-group-lg">
@@ -15,14 +17,16 @@
       </div>
     </form>
   </div>
+  <div style="height: 24px;"></div>
 
   <div class="d-flex justify-between">
   <% @tools.each do |tool| %>
     <div class="card m-3">
-      <h5 class="card-header text-gray bg-light" style="font-variant:small-caps;"><%= tool.category %></h5>
+      <h5 class="card-header text-gray bg-light" style="font-variant: small-caps;"><%= tool.category %></h5>
       <%= image_tag "cool_tool_thumb.png", style: "height: 240px; width: 240px;", class: "card-img-top" %>
       <div class="card-body border-top bg-light">
         <h4 class="card-title text-primary"><%= tool.name %></h4>
+        <p><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= tool.location %></p>
         <%= link_to "SEE DETAILS", tool_path(tool), class: "btn btn-primary text-white" %>
       </div>
     </div>
