@@ -20,4 +20,15 @@ class ToolsController < ApplicationController
   def show
     @tool = Tool.find(params[:id])
   end
+
+  def destroy
+    @tool = Tool.find(params[:id])
+    
+    if @tool.destroy
+      redirect_to tools_path, status: :see_other
+    else
+      render :index, status: :unprocessable_entity
+    end
+  end
+
 end
