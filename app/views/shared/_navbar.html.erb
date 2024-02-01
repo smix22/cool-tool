@@ -23,12 +23,12 @@
       <% if user_signed_in? %>
         <%= link_to destroy_user_session_path, id: "login", data: { "turbo_method": :delete, "turbo_confirm": "Are you sure?" } do %>
           <i class="fa-solid fa-circle-user fa-2x"></i>
-          <i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+          &nbsp;&nbsp;<i class="fa-solid fa-arrow-right-from-bracket fa-2x"></i>
         <% end %>
       <% else %>
         <%= link_to new_user_session_path, id: "login", class: "nav-link" do %>
-          <i class="fa-solid fa-arrow-right-to-bracket fa-lg"></i>
-          <i class="fa-solid fa-circle-user fa-2x"></i>
+          <i class="fa-solid fa-arrow-right-to-bracket fa-2x"></i>
+          &nbsp;&nbsp;<i class="fa-solid fa-circle-user fa-2x"></i>
         <% end %>
       <% end %>
     </div>
