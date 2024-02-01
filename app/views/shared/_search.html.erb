@@ -1,10 +1,19 @@
   <div style="height: 24px;"></div>
-  <div class="mx-auto my-3 w-50">
+
+  <div class="mx-auto my-3 w-75">
     <form action="/tools">
       <div class="input-group input-group-lg">
-        <input type="text" name="search" class="form-control" placeholder="Search for a tool or a category ...">
+        <div class="input-group-prepend input-group-lg">
+          <span class="input-group-text" id="basic-addon1"><%= image_tag "cool_tool_icon.png", style: "height: 24px; margin: 3px 0px;" %></span>
+        </div>
+        <input type="text" name="search_key" class="form-control" placeholder="Enter a tool or category" aria-describedby="basic-addon1">
+        <div class="input-group-prepend input-group-lg">
+          <span class="input-group-text" id="basic-addon2"><p class="m-0 align-middle"><i class="fa-solid fa-location-dot fa-lg"></i></p></span>
+        </div>
+        <input type="text" name="search_loc" class="form-control" placeholder="Enter a location" aria-describedby="basic-addon2">
         <button type="submit" class="btn btn-primary text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
     </form>
   </div>
+
   <div style="height: 24px;"></div>

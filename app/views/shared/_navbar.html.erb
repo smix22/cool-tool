@@ -1,23 +1,35 @@
-<nav class="px-3 py-2 bg-light border-bottom fixed-top">
+<nav class="bg-light border-bottom fixed-top" style="padding: 6px 36px;">
   <div class="d-flex justify-content-between align-items-center">
-    <div style="width: 360px;">
+    <div style="width: 25%">
       <%= link_to tools_path do %>
-        <%= image_tag "cool_tool_logo.png", style: "height: 48px;" %>
+        <%= image_tag "cool_tool_logo.png", style: "height: 54px;" %>
       <% end %>
     </div>
-    <div class="flex-grow-1 d-flex justify-content-around">
+    <div class="d-flex justify-content-around align-items-center" style="width: 50%">
+      <%= link_to tools_path do %>
+        <h6>DISCOVER</h6>
+      <% end %>
       <%= link_to new_tool_path do %>
-        MY TOOLBOX
+        <h6>MY TOOLBOX</h6>
+      <% end %>
+      <%= link_to bookings_path do %>
+        <h6>MY BOOKINGS</h6>
+      <% end %>
+      <%= link_to tools_path do %>
+        <h6>CATEGORIES</h6>
       <% end %>
     </div>
-    <div class="d-flex justify-content-end" style="width: 360px;">
-    <% if user_signed_in? %>
-      <%= link_to "Log out", destroy_user_session_path, data: { "turbo_method": :delete, "turbo_confirm": "Are you sure?" }%>
-    <% else %>
-      <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-    <% end %>
-      <%= link_to bookings_path do %>
-        <i class="fa-solid fa-circle-user fa-2x"></i>
+    <div class="d-flex justify-content-end align-items-center" style="width: 25%; vertical-align: middle;">
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, id: "login", data: { "turbo_method": :delete, "turbo_confirm": "Are you sure?" } do %>
+          <i class="fa-solid fa-circle-user fa-2x"></i>
+          <i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, id: "login", class: "nav-link" do %>
+          <i class="fa-solid fa-arrow-right-to-bracket fa-lg"></i>
+          <i class="fa-solid fa-circle-user fa-2x"></i>
+        <% end %>
       <% end %>
     </div>
   </div>

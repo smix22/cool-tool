@@ -10,3 +10,18 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+h6 {
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
+a:link {
+  color: $dark-gray;
+  text-decoration: none;
+}
+a:hover {
+  color: $cooltool;
+}
+#login {
+  color: $cooltool;
+}
