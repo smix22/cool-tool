@@ -1,18 +1,27 @@
-<div class="container">
-  <div class="card-header">
-    <h1><%= @tool.name %></h1>
-  </div>
+<div class="container-booking-form">
 
-  <div class="card-body">
-    <%= simple_form_for [@tool, @booking] do |f| %>
-    <%= f.label "Add a comment:" %>
-    <%= f.text_field :request, class: "form-control", placeholder: "Explain why you need this tool..." %>
-    <%= "Pick-up date:" %>
-    <%= f.date_field :start_date, class: "form-control" %>
-    <%= "Return date:" %>
-    <%= f.date_field :end_date, class: "form-control" %>
-    <p></p>
-    <p><%= f.submit class:'btn btn-primary'%></p>
+    <div class="row justify-content-center">
+      <h1 class="text-center"><%= @tool.name %></h1>
+    </div>
+
+
+      <%= simple_form_for [@tool, @booking] do |f| %>
+      <%= f.label "Add a comment:" %>
+      <%= f.text_field :request, class: "form-control", placeholder: "Explain why you need this tool..." %>
+      <div class="input-dates">
+        <div class="input-dates-fields" id="input-start-date">
+          <%= "Pick-up date:" %>
+          <%= f.date_field :start_date, class: "form-control", data:{controller:"calendar", action:"focusin->calendar#showCalendar"} %>
+        </div>
+        <div class="input-dates-fields">
+          <%= "Return date:" %>
+          <%= f.date_field :end_date, class: "form-control", data:{controller:"calendar", action:"focusin->calendar#showCalendar"}%>
+        </div>
+      </div>
+      <p></p>
+      <div class="booking-button">
+        <p><%= f.submit class:'btn btn-primary'%></p>
+      </div>
       <% end %>
-  </div>
+
 </div>

@@ -1,28 +1,20 @@
 <div class="container-fluid">
 
-  <div style="height: 24px;"></div>
-  <div class="mx-auto my-3 w-50">
-    <form action="/tools">
-      <div class="input-group input-group-lg">
-        <input type="text" name="search" class="form-control" placeholder="Search for a tool or a category ...">
-        <button type="submit" class="btn btn-primary text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
-      </div>
-    </form>
-  </div>
-  <div style="height: 24px;"></div>
+  <%= render "shared/search" %>
 
   <div class="d-flex justify-between flex-wrap">
   <% if @tools %>
     <% @tools.each do |tool| %>
       <div class="card m-3" style="width: 240px;">
         <p class="card-header text-gray bg-light"><%= tool.category.upcase %></p>
-        <%= image_tag(tool.image_url, style: "height: 238px; width: 238px;", class: "card-img-top") %>
+        <%= cl_image_tag tool.photo.key, style: "height: 238px; width: 238px;", class: "card-img-top" %>
         <div class="card-body border-top bg-light">
           <h4 class="card-title text-primary"><%= tool.name %></h4>
           <p><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= tool.location %></p>
           <%= link_to "SEE DETAILS", tool_path(tool), class: "btn btn-primary text-white" %>
-          <%# WHY DOES THIS BUTTON CAN'T WORK WITH THE TURBO METHOD??%>
-          <%= link_to "delete", tool_path(tool), data: { "turbo_method": :delete, "turbo_confirm": "Are you sure?" }, class: "btn btn-warning text-white"%>
+          <%= link_to tool_path(tool), data: { "turbo_method": :delete, "turbo_confirm": "Are you sure?" }, class: "btndel btn-warning text-white" do %>
+          <i class="fa-solid fa-trash-can"></i>
+          <% end %>
         </div>
       </div>
     <% end %>
