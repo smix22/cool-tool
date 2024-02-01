@@ -36,6 +36,16 @@ class ToolsController < ApplicationController
     end
   end
 
+  def destroy
+    @tool = Tool.find(params[:id])
+    
+    if @tool.destroy
+      redirect_to tools_path, status: :see_other
+    else
+      render :index, status: :unprocessable_entity
+    end
+  end
+  
   private
 
   def tool_params
