@@ -16,8 +16,6 @@ class BookingsController < ApplicationController
     @booking.tool = @tool
     if @booking.save
       redirect_to bookings_path
-    else
-      render :new, status: :unprocessable_entity
     end
   end
 
