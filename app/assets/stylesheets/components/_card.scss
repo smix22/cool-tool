@@ -1,7 +1,7 @@
 .cards {
   display: flex;
   flex-flow: column;
-  align-items: center;
+  align-items: left;
   width: 300px;
   border: 1px solid lightgrey;
   border-radius: 5px;
@@ -22,12 +22,12 @@
 .card-body {
   display: flex;
   flex-flow: column;
-  align-items: center;
+  align-items: left;
 }
 
-.btn {
-  margin-top: 15px;
-}
+// .btn {
+//   margin-top: 15px;
+// }
 
 .btndel {
   margin-bottom: 15px;
