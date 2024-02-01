@@ -60,7 +60,7 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
 
     if @tool.destroy
-      redirect_to tools_path, status: :see_other
+      redirect_to new_tool_path, status: :see_other
     else
       render :index, status: :unprocessable_entity
     end
