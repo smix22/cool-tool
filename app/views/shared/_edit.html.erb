@@ -1,0 +1,32 @@
+<div class="container-fluid">
+
+  <div style="height: 24px;"></div>
+
+  <div class="m-3 w-25">
+    <%= simple_form_for @tool do |f| %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+      <%= f.input :category, class: "form-control", :collection => ["handheld", "house", "garden", "woodwork"] %>
+      <%= f.text_field :details, class: "form-control", placeholder: "Details" %>
+      <%= f.text_field :location, class: "form-control", placeholder: "Location" %>
+      <%= f.input :photo, as: :file, class: "form-control" %>
+      <%= f.submit "EDIT TOOL", class: "btn btn-primary text-white" %>
+    <% end %>
+  </div>
+
+  <div class="d-flex justify-between flex-wrap">
+    <% if @tools %>
+      <% @tools.each do |tool| %>
+        <div class="card m-3" style="width: 240px;">
+          <p class="card-header text-gray bg-light"><%= tool.category.upcase %></p>
+          <%= cl_image_tag tool.photo.key, style: "height: 238px; width: 238px;", class: "card-img-top" %>
+          <div class="card-body border-top bg-light">
+            <h4 class="card-title text-primary"><%= tool.name %></h4>
+            <p><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= tool.location %></p>
+            <p class="card-text"><%= tool.details %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

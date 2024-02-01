@@ -22,7 +22,7 @@
     <% if @tools %>
       <% @tools.each do |tool| %>
         <div class="card m-3" style="width: 210px;">
-          <p class="card-header text-gray bg-light"><%= tool.category.upcase %></p>
+          <p class="card-header text-gray bg-light"><%= tool.category.upcase %> <%= link_to "Edit", tool_path(tool), class: "btn btn-success" %></p>
           <%= cl_image_tag tool.photo.key, style: "height: 208px; width: 208px;", class: "card-img-top" %>
           <div class="card-body border-top bg-light">
             <h4 class="card-title text-primary"><%= tool.name %></h4>

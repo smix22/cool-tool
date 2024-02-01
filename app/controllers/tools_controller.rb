@@ -27,6 +27,7 @@ class ToolsController < ApplicationController
 
   def show
     @tool = Tool.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
@@ -43,6 +44,16 @@ class ToolsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @tool = Tool.find(params[:id])
+  end
+
+  def update
+    @tool = Tool.find(params[:id])
+    @tool.update(tool_params)
+    redirect_to tool_path(@tool)
   end
 
   def destroy
