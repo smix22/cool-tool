@@ -20,4 +20,25 @@ class ToolsController < ApplicationController
   def show
     @tool = Tool.find(params[:id])
   end
+
+  def new
+    @tools = Tool.where(user_id: 2)
+    @tool = Tool.new
+  end
+
+  def create
+    @tool = Tool.new(tool_params)
+    @tool.user = User.find(2)
+    if @tool.save
+      redirect_to tool_path(@tool)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def tool_params
+    params.require(:tool).permit(:name, :details, :category, :location, :photo, :user_id)
+  end
 end

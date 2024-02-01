@@ -9,29 +9,43 @@
 #   end
 
 require "faker"
+require "open-uri"
 
 # puts "Creating users..."
 # User.create(email: "user@user.com", first_name: "Dareos", last_name: "Khalili", id: 1, password: "password")
 # User.create(email: "owner@owner.com", first_name: "Arbi", last_name: "Milan", id: 2, password: "password")
 # puts "Done!"
 
-puts "Deleting exisitng tools..."
+puts "Deleting existing tools..."
 Tool.delete_all
 
 puts "Creating categories, names, images, and cities..."
 categories = ["handheld", "house", "garden", "woodwork"]
 names = ["Hammer", "Drill", "Jigsaw", "Ladder", "Shovel", "Lawnmower", "Measuring Tape", "Screwdriver", "Scissors", "Knife"]
 cities = ["Berlin", "Liverpool", "Santiago", "Paris", "Melbourne", "Copenhagen", "Milan", "Washington", "Hamburg", "Stockholm"]
-images = ["hammer.png", "drill.png", "jigsaw.png", "ladder.png", "shovel.png", "lawnmower.png", "measuring_tape.png", "screwdriver.png", "scissors.png", "knife.png"]
+images = [
+  "v1706792867/hammer_hdfk8j.png",
+  "v1706792858/drill_o8wqhl.png",
+  "v1706792871/jigsaw_d2befc.png",
+  "v1706792859/ladder_uqs0ic.png",
+  "v1706792868/shovel_h4rbeb.png",
+  "v1706792867/lawnmower_qbvxfc.png",
+  "v1706792861/measuring_tape_wiyqmf.png",
+  "v1706792870/screwdriver_fkdhax.png",
+  "v1706792867/scissors_zrouxk.png",
+  "v1706792863/knife_u4qrj9.png"
+]
 
-puts "Creating 100 fake tools..."
-100.times do
+puts "Creating 20 fake tools..."
+20.times do
   n = rand(0..9)
   category = categories[rand(0..3)]
   name = names[n]
   city = cities[rand(0..9)]
   image = images[n]
-  tool = Tool.new(name: name, category: category, details: Faker::Lorem.paragraph, location: city, user_id: rand(1..2), image_url: image)
+  tool = Tool.new(name: name, category: category, details: Faker::Lorem.paragraph, location: city, user_id: 2)
+  file = URI.open("https://res.cloudinary.com/dbmagpuir/image/upload/#{images[n]}")
+  tool.photo.attach(io: file, filename: images[n], content_type: "image/png")
   tool.save!
 end
 puts "Ready!"
