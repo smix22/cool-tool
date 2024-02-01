@@ -18,3 +18,13 @@
   margin-right: 16px;
 
 }
+
+.card-body {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.btn {
+  margin-top: 15px;
+}
