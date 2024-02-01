@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <h5 class="card-title"><%= @tool.name%></h5>
-    <%= image_tag(@tool.image_url, alt: "DeWalt Hammer", width: 200) %>
+    <%= cl_image_tag @tool.photo.key, alt: @tool.name, width: 200 %>
     <p><%= link_to "Book me", new_tool_booking_path(@tool), class: "btn btn-primary" %></p>
   </div>
   <div class="card-footer text-muted">

@@ -1,22 +1,13 @@
 <div class="container-fluid">
 
-  <div style="height: 24px;"></div>
-  <div class="mx-auto my-3 w-50">
-    <form action="/tools">
-      <div class="input-group input-group-lg">
-        <input type="text" name="search" class="form-control" placeholder="Search for a tool or a category ...">
-        <button type="submit" class="btn btn-primary text-white"><i class="fa-solid fa-magnifying-glass"></i></button>
-      </div>
-    </form>
-  </div>
-  <div style="height: 24px;"></div>
+  <%= render "shared/search" %>
 
   <div class="d-flex justify-between flex-wrap">
   <% if @tools %>
     <% @tools.each do |tool| %>
       <div class="card m-3" style="width: 240px;">
         <p class="card-header text-gray bg-light"><%= tool.category.upcase %></p>
-        <%= image_tag(tool.image_url, style: "height: 238px; width: 238px;", class: "card-img-top") %>
+        <%= cl_image_tag tool.photo.key, style: "height: 238px; width: 238px;", class: "card-img-top" %>
         <div class="card-body border-top bg-light">
           <h4 class="card-title text-primary"><%= tool.name %></h4>
           <p><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= tool.location %></p>
