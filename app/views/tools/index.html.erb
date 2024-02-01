@@ -21,6 +21,8 @@
           <h4 class="card-title text-primary"><%= tool.name %></h4>
           <p><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= tool.location %></p>
           <%= link_to "SEE DETAILS", tool_path(tool), class: "btn btn-primary text-white" %>
+          <%# WHY DOES THIS BUTTON CAN'T WORK WITH THE TURBO METHOD??%>
+          <%= button_to "delete", tool_path(tool), method: :delete, class: "btn btn-warning text-white"%>
         </div>
       </div>
     <% end %>
