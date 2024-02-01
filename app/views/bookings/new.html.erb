@@ -7,9 +7,9 @@
     <%= simple_form_for [@tool, @booking] do |f| %>
     <%= f.label "Add a comment:" %>
     <%= f.text_field :request, class: "form-control", placeholder: "Explain why you need this tool..." %>
-    <%= "Start Date" %>
+    <%= "Pick-up date:" %>
     <%= f.date_field :start_date, class: "form-control" %>
-    <%= "End date" %>
+    <%= "Return date:" %>
     <%= f.date_field :end_date, class: "form-control" %>
     <p></p>
     <p><%= f.submit class:'btn btn-primary'%></p>
