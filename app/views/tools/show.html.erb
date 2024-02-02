@@ -1,44 +1,5 @@
-
-<% if user_signed_in? != current_user %>
-  <div class="card text-center">
-    <div class="card-header">
-      <%= @tool.category.upcase %>
-    </div>
-    <div class="d-flex">
-     <div class="card-body">
-        <h5 class="card-title"><%= @tool.name%></h5>
-        <%= cl_image_tag @tool.photo.key, alt: @tool.name, width: 200 %>
-        <p><%#= link_to "Book me", new_tool_booking_path(@tool), class: "btn btn-primary" %></p>
-      </div>
-       <div class="form-control">
-          <%= render "shared/book" %>
-        </div>
-    </div>
-    <div class="card-footer text-muted">
-      <p>
-      <%= @tool.details %>
-      </p>
-    </div>
-  </div>
+<% if current_user.id == @tool.user_id %>
+   <%= render "shared/edit" %>
 <% else %>
-    <div class="card text-center">
-      <div class="card-header">
-        <%= @tool.category.upcase %>
-      </div>
-      <div class="d-flex">
-        <div class="card-body">
-          <h5 class="card-title"><%= @tool.name%></h5>
-          <%= cl_image_tag @tool.photo.key, alt: @tool.name, width: 200 %>
-        </div>
-          <div class="form-control">
-          <%= render "shared/edit" %>
-          </div>
-      </div>
-      <div class="card-footer text-muted">
-        <p>
-        <%= @tool.details %>
-        </p>
-      </div>
-    </div>
-
+   <%= render "shared/book" %>
 <% end %>

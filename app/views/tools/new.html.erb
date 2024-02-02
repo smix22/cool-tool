@@ -1,15 +1,18 @@
 <div class="container-fluid">
 
   <div style="height: 24px;"></div>
-  <div class="mx-auto my-3 w-75">
+  <div class="mx-auto my-3" style="width: 90%;">
     <%= simple_form_for @tool do |f| %>
-      <div class="input-group input-group-lg">
-        <%= f.input :category, :collection => ["handheld", "house", "garden", "woodwork"], label: false %>
+      <div class="input-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">NEW TOOL</span>
+        </div>
+        <%= f.text_field :category, class: "form-control", placeholder: "Category" %>
         <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
         <%= f.text_field :details, class: "form-control", placeholder: "Details" %>
         <%= f.text_field :location, class: "form-control", placeholder: "Location" %>
         <%= f.input :photo, as: :file, class: "btn btn-primary", label: false %>
-      <button type="submit" class="btn btn-primary"><%= image_tag "cool_tool_icon_white.png", style: "height: 24px; margin: 3px 0px;" %></button>
+        <button type="submit" class="btn btn-primary text-white">CREATE</button>
       </div>
     <% end %>
   </div>
@@ -17,6 +20,10 @@
   <div style="height: 24px;"></div>
   <hr>
   <div style="height: 24px;"></div>
+
+  <div class="mx-3">
+    <h4 class="text-primary"><strong>MY TOOLBOX</strong></h4>
+  </div>
 
   <div class="d-flex flex-wrap">
     <% if @tools %>

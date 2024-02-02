@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
   before_action :set_tool, only: [:new, :create]
 
   def index
-    @bookings = Booking.all
+    @bookings = Booking.all.order(created_at: :desc, requested: :asc)
   end
 
   def new
@@ -14,8 +14,11 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.tool = @tool
+    @booking.requested = true
     if @booking.save
       redirect_to bookings_path
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
