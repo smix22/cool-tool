@@ -7,43 +7,23 @@
   </div>
 
   <div class="mx-3">
-  <% if @bookings %>
-    <% @bookings.each do |booking| %>
-      <div>
-        <%= booking.created_at %> | <%= booking.tool.name %> | Owner: <%= booking.user.first_name %> <%= booking.user.last_name %> | <% if booking.requested %> Accepted <% end %>
-      </div>
+    <% if @bookings %>
+      <% @bookings.each do |booking| %>
+        <div>
+          <%= booking.created_at %> | <%= booking.tool.name %> | Owner: <%= booking.user.first_name %> <%= booking.user.last_name %> | <% if booking.requested %> Accepted <% end %>
+        </div>
     <% end %>
-  <% else %>
-    <p class="mx-3"><i>You don't have any bookings yet.</i></p>
-  <% end %>
+    <% else %>
+      <p class="mx-3"><i>You don't have any bookings yet.</i></p>
+    <% end %>
   </div>
 
-
-<% if user_signed_in? %>
-  <h1>My Tools Bookings</h1>
-  <%= current_user.first_name %>
-  <%= current_user.last_name %><br>
-  <%= current_user.email %><br>
-  </div><br>
-
-  <div class="cards-category">
-    <% @bookings.each do |booking| %>
-      <div class="cards" style="">
-        <p><%= booking.tool.name %></p>
-        <p>"<%= booking.request%>"<br>
-        <strong><%= "Start date" %></strong>
-        <%= booking.start_date %><br>
-        <strong><%= "End date" %></strong>
-        <%= booking.end_date %><br>
-        <strong><%= "Owner:" %></strong>
-        <%= booking.tool.user.first_name %>
-        <%= booking.tool.user.last_name %>
-        <%= link_to "🗑", booking_path(booking), data: { "turbo_method": :delete, "turbo_confirm": "Are you sure?" }%><br>
-        <%=  %><br>
-      </div>
+  <% if user_signed_in? %>
+      <% if current_user.id == 1 %>
+      <%= render "shared/bookingsuser" %>
+      <% else %>
+      <%= render "shared/bookingsowner" %>
+      <% end %>
     <% end %>
-  <% else %>
-    <h1>My Tools Bookings</h1>
-    <%= link_to "Click here to sign in and see your requests", new_user_session_path, class: "nav-link" %>
-  <% end %>
+
 </div>

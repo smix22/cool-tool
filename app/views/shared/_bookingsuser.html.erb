@@ -1,0 +1,23 @@
+  <h1>My Tools Bookings</h1>
+  <%= current_user.first_name %>
+  <%= current_user.last_name %><br>
+  <%= current_user.email %><br>
+  </div><br>
+
+  <div class="cards-category">
+    <% @bookings.each do |booking| %>
+      <div class="cards" style="">
+        <p><%= booking.tool.name %></p>
+        <p>"<%= booking.request%>"<br>
+        <strong><%= "Start date" %></strong>
+        <%= booking.start_date %><br>
+        <strong><%= "End date" %></strong>
+        <%= booking.end_date %><br>
+        <strong><%= "Owner:" %></strong>
+        <%= booking.tool.user.first_name %>
+        <%= booking.tool.user.last_name %>
+        <%= link_to "🗑", booking_path(booking), data: { "turbo_method": :delete, "turbo_confirm": "Are you sure?" }%><br>
+        <%=  %><br>
+      </div>
+    <% end %>
+  </div>
