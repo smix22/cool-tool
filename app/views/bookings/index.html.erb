@@ -10,7 +10,7 @@
     <% if @bookings %>
       <% @bookings.each do |booking| %>
         <div>
-          <%= booking.created_at %> | <%= booking.tool.name %> | Owner: <%= booking.user.first_name %> <%= booking.user.last_name %> | <% if booking.requested %> Accepted <% end %>
+          <%= booking.created_at.strftime("%b %d, %Y") %> | <%= booking.tool.name %> | Owner: <%= booking.user.first_name %> <%= booking.user.last_name %> | <% if booking.requested %> Accepted <% end %>
         </div>
     <% end %>
     <% else %>
