@@ -37,7 +37,7 @@ class ToolsController < ApplicationController
 
   def create
     @tool = Tool.new(tool_params)
-    @tool.user = User.find(2)
+    @tool.user = current_user
     if @tool.save
       redirect_to tool_path(@tool)
       @message = "You created this tool successfully."
