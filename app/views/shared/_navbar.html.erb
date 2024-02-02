@@ -9,16 +9,18 @@
       <%= link_to tools_path do %>
         <h6>DISCOVER</h6>
       <% end %>
-      <% if current_user.id == 1 %>
-        <%= link_to bookings_path do %>
-          <h6>MY BOOKINGS</h6>
-        <% end %>
-      <% else %>
-        <%= link_to new_tool_path do %>
-          <h6>MY TOOLBOX</h6>
-        <% end %>
-        <%= link_to bookings_path do %>
-          <h6>MY BOOKINGS</h6>
+      <% if user_signed_in? %>
+        <% if current_user.id == 1 %>
+          <%= link_to bookings_path do %>
+            <h6>MY BOOKINGS</h6>
+          <% end %>
+        <% else %>
+          <%= link_to new_tool_path do %>
+            <h6>MY TOOLBOX</h6>
+          <% end %>
+          <%= link_to bookings_path do %>
+            <h6>MY BOOKINGS</h6>
+          <% end %>
         <% end %>
       <% end %>
       <%= link_to tools_path do %>
