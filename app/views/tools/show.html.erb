@@ -1,16 +1,52 @@
-<div class="card text-center">
-  <div class="card-header">
-    <%= @tool.category.upcase %>
+<div class="container d-flex">
+  <div class="row">
+  <div class="col">
+      <div class="card text-center">
+        <div class="card-header">
+          <%= @tool.category.upcase %>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= @tool.name%></h5>
+          <%= cl_image_tag @tool.photo.key, alt: @tool.name, width: 200 %>
+        </div>
+        <div class="card-footer text-muted">
+          <p>
+          <%= @tool.details %>
+          </p>
+        </div>
+      </div>
+      <% @tool.bookings.each do |booking| %>
+      <%= booking.user.email %>
+      <% end %>
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title"><%= @tool.name%></h5>
-    <%= cl_image_tag @tool.photo.key, alt: @tool.name, width: 200 %>
-    <p><%= link_to "Book me", new_tool_booking_path(@tool), class: "btn btn-primary" %></p>
-  </div>
-  <div class="card-footer text-muted">
-    <p>
-    <%= @tool.details %>
-    </p>
-  </div>
-</div>
 
+
+<div class="container-booking-form">
+
+    <div class="row justify-content-center">
+      <h1 class="text-center"><%= @tool.name %></h1>
+    </div>
+
+
+      <%= simple_form_for [@tool, @booking] do |f| %>
+      <%= f.label "Add a comment:" %>
+      <%= f.text_field :request, class: "form-control", placeholder: "Explain why you need this tool..." %>
+      <div class="input-dates">
+        <div class="input-dates-fields" id="input-start-date">
+          <%= "Pick-up date:" %>
+          <%= f.date_field :start_date, class: "form-control", data:{controller:"calendar", action:"focusin->calendar#showCalendar"} %>
+        </div>
+        <div class="input-dates-fields">
+          <%= "Return date:" %>
+          <%= f.date_field :end_date, class: "form-control", data:{controller:"calendar", action:"focusin->calendar#showCalendar"}%>
+        </div>
+      </div>
+      <p></p>
+      <div class="booking-button">
+        <p><%= f.submit class:'btn btn-primary'%></p>
+      </div>
+      <% end %>
+
+</div>
+</div>
