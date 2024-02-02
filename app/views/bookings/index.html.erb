@@ -6,24 +6,32 @@
     <h4 class="text-primary"><strong>MY BOOKINGS</strong></h4>
   </div>
 
-  <div class="mx-3">
-    <% if @bookings %>
-      <% @bookings.each do |booking| %>
-        <div>
-          <%= booking.created_at.strftime("%b %d, %Y") %> | <%= booking.tool.name %> | Owner: <%= booking.user.first_name %> <%= booking.user.last_name %> | <% if booking.requested %> Accepted <% end %>
+  <div class="d-flex flex-wrap">
+  <% if @bookings %>
+    <% @bookings.each do |booking| %>
+      <div class="card m-3" style="width: 210px;">
+        <p class="card-header text-gray bg-light"><i class="fa-regular fa-calendar-check"></i>&nbsp;&nbsp;<%= booking.created_at.strftime("%b %d, %Y") %></p>
+        <%= cl_image_tag booking.tool.photo.key, style: "height: 208px; width: 208px;", class: "card-img-top" %>
+        <div class="card-body border-top bg-light">
+          <h4 class="card-title text-primary"><%= booking.tool.name %></h4>
+          <p class="m-0 text-content"><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= booking.tool.location %></p>
+          <p class="m-0"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;<%= booking.user.first_name %> <%= booking.user.last_name %></p>
+          <p class="m-0"><i class="fa-solid fa-arrow-right"></i>&nbsp;&nbsp;<%= booking.start_date.strftime("%b %d, %Y") %></p>
+          <p><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;<%= booking.end_date.strftime("%b %d, %Y") %></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <button type="button" class="btn btn-outline-primary text-primary btn-sm" disabled><%= booking.tool.price %> €</button>
+            </div>
+            <div>
+              <button type="button" class="btn btn-outline-primary text-primary btn-sm" disabled>ACCEPTED</button>
+            </div>
+          </div>
         </div>
+      </div>
     <% end %>
-    <% else %>
-      <p class="mx-3"><i>You don't have any bookings yet.</i></p>
-    <% end %>
+  <% else %>
+    <p class="mx-3"><i><%= @message %></i></p>
+  <% end %>
   </div>
-
-  <% if user_signed_in? %>
-      <% if current_user.id == 1 %>
-      <%= render "shared/bookingsuser" %>
-      <% else %>
-      <%= render "shared/bookingsowner" %>
-      <% end %>
-    <% end %>
 
 </div>

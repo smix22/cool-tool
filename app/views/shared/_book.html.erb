@@ -1,45 +1,30 @@
-  <div class="card text-center">
-    <div class="card-header">
-      <%= @tool.category.upcase %>
-    </div>
-    <div class="d-flex">
-     <div class="card-body">
-        <h5 class="card-title"><%= @tool.name%></h5>
-        <%= cl_image_tag @tool.photo.key, alt: @tool.name, width: 200 %>
-        <p><%#= link_to "Book me", new_tool_booking_path(@tool), class: "btn btn-primary" %></p>
-      </div>
-       <div class="form-control">
 
+  <div style="width: 24px;"></div>
 
-<div class="container-booking-form">
-  <div class="row justify-content-center">
-    <h1 class="text-center"><%= @tool.name %></h1>
-  </div>
-
+  <div class="w-50">
   <%= simple_form_for [@tool, @booking] do |f| %>
-    <%= f.label "Add a comment:" %>
-    <%= f.text_field :request, class: "form-control", placeholder: "Explain why you need this tool..." %>
-      <div class="input-dates">
-        <div class="input-dates-fields" id="input-start-date">
-          <%= "Pick-up date:" %>
-          <%= f.date_field :start_date, class: "form-control", data:{controller:"calendar", action:"focusin->calendar#showCalendar"} %>
+    <div class="px-3">
+      <div class="input-group pb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">COMMENT</span>
         </div>
-        <div class="input-dates-fields">
-          <%= "Return date:" %>
-          <%= f.date_field :end_date, class: "form-control", data:{controller:"calendar", action:"focusin->calendar#showCalendar"}%>
+        <%= f.text_field :request, class: "form-control", placeholder: "Please explain why you need this tool" %>
+      </div>
+      <div class="input-group pb-1 w-50">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">PICK-UP</span>
         </div>
+        <%= f.date_field :start_date, class: "form-control", data: { controller:"calendar", action:"focusin->calendar#showCalendar" } %>
       </div>
-      <div class="booking-button">
-        <p><%= f.submit class:'btn btn-primary'%></p>
+      <div class="input-group pb-3 w-50">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">RETURN</span>
+        </div>
+        <%= f.date_field :end_date, class: "form-control", data: { controller:"calendar", action:"focusin->calendar#showCalendar" } %>
       </div>
+      <div class="input-group">
+        <button type="submit" class="btn btn-primary text-white">BOOK TOOL&nbsp;&nbsp;<i class="fa-regular fa-calendar-check"></i></button>
+      </div>
+    </div>
   <% end %>
-</div>
-
-        </div>
-    </div>
-    <div class="card-footer text-muted">
-      <p>
-      <%= @tool.details %>
-      </p>
-    </div>
   </div>
