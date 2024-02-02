@@ -39,7 +39,7 @@ class ToolsController < ApplicationController
     @tool = Tool.new(tool_params)
     @tool.user = current_user
     if @tool.save
-      redirect_to tool_path(@tool)
+      redirect_to new_tool_path
       @message = "You created this tool successfully."
     else
       render :new, status: :unprocessable_entity
@@ -69,6 +69,6 @@ class ToolsController < ApplicationController
   private
 
   def tool_params
-    params.require(:tool).permit(:name, :details, :category, :location, :photo, :user_id)
+    params.require(:tool).permit(:name, :details, :category, :location, :photo, :user_id, :price)
   end
 end
