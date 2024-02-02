@@ -1,25 +1,42 @@
 <div class="container-fluid">
 
   <div style="height: 24px;"></div>
-  <h3 class="m-3 text-primary">MY TOOLBOX</h3>
-
-  <div class="m-3 w-25">
+  <div class="mx-auto my-3" style="width: 90%;">
     <%= simple_form_for @tool do |f| %>
-      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
-      <%= f.input :category, class: "form-control", :collection => ["handheld", "house", "garden", "woodwork"] %>
-      <%= f.text_field :details, class: "form-control", placeholder: "Details" %>
-      <%= f.text_field :location, class: "form-control", placeholder: "Location" %>
-      <%= f.input :photo, as: :file, class: "form-control" %>
-      <%= f.submit "CREATE TOOL", class: "btn btn-primary text-white" %>
+      <div class="input-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">NEW TOOL</span>
+        </div>
+        <%= f.text_field :category, class: "form-control", placeholder: "Category" %>
+        <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+        <%= f.text_field :details, class: "form-control", placeholder: "Details" %>
+        <%= f.text_field :location, class: "form-control", placeholder: "Location" %>
+        <%= f.input :photo, as: :file, class: "btn btn-primary", label: false %>
+        <button type="submit" class="btn btn-primary text-white">CREATE</button>
+      </div>
     <% end %>
   </div>
 
-  <div class="d-flex justify-between flex-wrap">
+  <div style="height: 24px;"></div>
+  <hr>
+  <div style="height: 24px;"></div>
+
+  <div class="mx-3">
+    <h4 class="text-primary"><strong>MY TOOLBOX</strong></h4>
+  </div>
+
+  <div class="d-flex flex-wrap">
     <% if @tools %>
       <% @tools.each do |tool| %>
-        <div class="card m-3" style="width: 240px;">
-          <p class="card-header text-gray bg-light"><%= tool.category.upcase %></p>
-          <%= cl_image_tag tool.photo.key, style: "height: 238px; width: 238px;", class: "card-img-top" %>
+        <div class="card m-3" style="width: 210px;">
+          <div class="d-flex justify-content-between card-header text-gray bg-light">
+            <p class="m-0"><%= tool.category.upcase %></p>
+            <div class="justify-content-end">
+              <%= link_to  tool_path(tool) do %><i class="fa-solid fa-edit"></i><% end %>
+              &nbsp;&nbsp;<%= link_to  tool_path(tool), data: { "turbo_method": :delete, "turbo_confirm": "Are you sure you want to delete this tool?" } do %><i class="fa-solid fa-trash"></i><% end %>
+            </div>
+          </div>
+          <%= cl_image_tag tool.photo.key, style: "height: 208px; width: 208px;", class: "card-img-top" %>
           <div class="card-body border-top bg-light">
             <h4 class="card-title text-primary"><%= tool.name %></h4>
             <p><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= tool.location %></p>

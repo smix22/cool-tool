@@ -1,4 +1,24 @@
-<div class="container">
+<div class="container-fluid">
+
+  <div style="height: 24px;"></div>
+
+  <div class="mx-3">
+    <h4 class="text-primary"><strong>MY BOOKINGS</strong></h4>
+  </div>
+
+  <div class="mx-3">
+  <% if @bookings %>
+    <% @bookings.each do |booking| %>
+      <div>
+        <%= booking.created_at %> | <%= booking.tool.name %> | Owner: <%= booking.user.first_name %> <%= booking.user.last_name %> | <% if booking.requested %> Accepted <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="mx-3"><i>You don't have any bookings yet.</i></p>
+  <% end %>
+  </div>
+
+
 <% if user_signed_in? %>
   <h1>My Tools Bookings</h1>
   <%= current_user.first_name %>

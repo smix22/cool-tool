@@ -1,14 +1,22 @@
 class ToolsController < ApplicationController
 
   def index
-    if params[:search]
-      @keyword = params[:search].strip
-      @search = Tool.where("lower(name) like ?", "%#{@keyword.downcase}%")
-                .or(Tool.where("lower(category) like ?", "%#{@keyword.downcase}%"))
+    if params[:search_key] or params[:search_loc]
+      @keyword = params[:search_key].strip
+      @location = params[:search_loc].strip
+      if @location.blank?
+        @search_loc = Tool.all
+      else
+        @search_loc = Tool.where("lower(location) like ?", "%#{@location.downcase}%")
+      end
+      if @keyword.blank?
+        @search = @search_loc
+      else
+        @search = @search_loc.where("lower(name) like ?", "%#{@keyword.downcase}%")
+                  .or(@search_loc.where("lower(category) like ?", "%#{@keyword.downcase}%"))
+      end
       if @search.blank?
-        @message = "No results for \"#{@keyword}\". Please run a new search."
-      elsif @keyword == ""
-        @message = "You did not enter anything. Please run a new search."
+        @message = "No results. Please run a new search."
       else
         @tools = @search
       end
@@ -23,25 +31,36 @@ class ToolsController < ApplicationController
   end
 
   def new
-    @tools = Tool.where(user_id: 2)
+    @tools = Tool.where(user_id: 2).order(created_at: :desc)
     @tool = Tool.new
   end
 
   def create
     @tool = Tool.new(tool_params)
-    @tool.user = User.find(2)
+    @tool.user = current_user
     if @tool.save
       redirect_to tool_path(@tool)
+      @message = "You created this tool successfully."
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @tool = Tool.find(params[:id])
+  end
+
+  def update
+    @tool = Tool.find(params[:id])
+    @tool.update(tool_params)
+    redirect_to tool_path(@tool)
   end
 
   def destroy
     @tool = Tool.find(params[:id])
 
     if @tool.destroy
-      redirect_to tools_path, status: :see_other
+      redirect_to new_tool_path, status: :see_other
     else
       render :index, status: :unprocessable_entity
     end

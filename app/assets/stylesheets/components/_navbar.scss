@@ -1,12 +1,15 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+h6 {
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
 }
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+a:link {
+  color: $dark-gray;
+  text-decoration: none;
 }
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+a:hover {
+  color: $cooltool;
+}
+#login {
+  color: $cooltool;
 }
