@@ -1,5 +1,7 @@
+
 <% if current_user.id == @tool.user_id %>
    <%= render "shared/edit" %>
 <% else %>
    <%= render "shared/book" %>
 <% end %>
+

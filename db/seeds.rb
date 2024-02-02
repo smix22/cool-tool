@@ -11,13 +11,16 @@
 require "faker"
 require "open-uri"
 
+
+
+puts "Deleting existing tools..."
+Tool.delete_all
+User.destroy_all
+
 puts "Creating users..."
 User.create(email: "user@user.com", first_name: "Dareos", last_name: "Khalili", id: 1, password: "password")
 User.create(email: "owner@owner.com", first_name: "Arbi", last_name: "Milan", id: 2, password: "password")
 puts "Done!"
-
-puts "Deleting existing tools..."
-Tool.delete_all
 
 puts "Creating categories, names, images, and cities..."
 categories = ["handheld", "house", "garden", "woodwork"]
