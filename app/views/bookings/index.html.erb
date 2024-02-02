@@ -6,44 +6,32 @@
     <h4 class="text-primary"><strong>MY BOOKINGS</strong></h4>
   </div>
 
-  <div class="mx-3">
+  <div class="d-flex flex-wrap">
   <% if @bookings %>
     <% @bookings.each do |booking| %>
-      <div>
-        <%= booking.created_at %> | <%= booking.tool.name %> | Owner: <%= booking.user.first_name %> <%= booking.user.last_name %> | <% if booking.requested %> Accepted <% end %>
+      <div class="card m-3" style="width: 210px;">
+        <p class="card-header text-gray bg-light"><i class="fa-regular fa-calendar-check"></i>&nbsp;&nbsp;<%= booking.created_at.strftime("%b %d, %Y") %></p>
+        <%= cl_image_tag booking.tool.photo.key, style: "height: 208px; width: 208px;", class: "card-img-top" %>
+        <div class="card-body border-top bg-light">
+          <h4 class="card-title text-primary"><%= booking.tool.name %></h4>
+          <p class="m-0 text-content"><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;<%= booking.tool.location %></p>
+          <p class="m-0"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;<%= booking.user.first_name %> <%= booking.user.last_name %></p>
+          <p class="m-0"><i class="fa-solid fa-arrow-right"></i>&nbsp;&nbsp;<%= booking.start_date.strftime("%b %d, %Y") %></p>
+          <p><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;<%= booking.end_date.strftime("%b %d, %Y") %></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <button type="button" class="btn btn-outline-primary text-primary btn-sm" disabled><%= booking.tool.price %> €</button>
+            </div>
+            <div>
+              <button type="button" class="btn btn-outline-primary text-primary btn-sm" disabled>ACCEPTED</button>
+            </div>
+          </div>
+        </div>
       </div>
     <% end %>
   <% else %>
-    <p class="mx-3"><i>You don't have any bookings yet.</i></p>
+    <p class="mx-3"><i><%= @message %></i></p>
   <% end %>
   </div>
 
-
-<% if user_signed_in? %>
-  <h1>My Tools Bookings</h1>
-  <%= current_user.first_name %>
-  <%= current_user.last_name %><br>
-  <%= current_user.email %><br>
-  </div><br>
-
-  <div class="cards-category">
-    <% @bookings.each do |booking| %>
-      <div class="cards" style="">
-        <p><%= booking.tool.name %></p>
-        <p>"<%= booking.request%>"<br>
-        <strong><%= "Start date" %></strong>
-        <%= booking.start_date %><br>
-        <strong><%= "End date" %></strong>
-        <%= booking.end_date %><br>
-        <strong><%= "Owner:" %></strong>
-        <%= booking.tool.user.first_name %>
-        <%= booking.tool.user.last_name %>
-        <%= link_to "🗑", booking_path(booking), data: { "turbo_method": :delete, "turbo_confirm": "Are you sure?" }%><br>
-        <%=  %><br>
-      </div>
-    <% end %>
-  <% else %>
-    <h1>My Tools Bookings</h1>
-    <%= link_to "Click here to sign in and see your requests", new_user_session_path, class: "nav-link" %>
-  <% end %>
 </div>
